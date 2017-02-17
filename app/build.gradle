@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "me.gmcardoso.googlelogin"
+        minSdkVersion 18
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.1.0'
+
+    // Compile Google Play Services in the project (Google Login)
+    compile 'com.google.android.gms:play-services-auth:9.8.0'
+
+    //Glide, to show the profile picture from the user
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    testCompile 'junit:junit:4.12'
+}
+
+// Apply this to use Google login
+apply plugin: 'com.google.gms.google-services'
